@@ -13,8 +13,7 @@
         margin: 0;
         padding: 0;
         font-family: "Teko", sans-serif;
-        font-size: 32px;
-        color: white;
+        
       }
       .container {
         display: flex;
@@ -55,10 +54,13 @@
         width: 300px;
         height: 25px;
         margin-top: 9rem;
+        font-size: 32px;
+        color: white;
       }
       .today {
         float: left;
         margin-left: 30px;
+        
       }
       .day {
         float: right;
@@ -71,6 +73,12 @@
         border-radius: 20px;
         background: rgb(52, 144, 130);
         /* background: white; */
+      }
+      .footer{
+        position: absolute;
+        bottom: 50px;
+        font-size: 32px;
+        color: black;
       }
     </style>
   </head>
@@ -87,8 +95,8 @@
         <div class="today">FRIDAY</div>
         <div class="day"></div>
       </div>
+      <div class="footer">reirajiang © 2020</div>
     </div>
-
     <script>
       var time = new Date();
       // 星期
