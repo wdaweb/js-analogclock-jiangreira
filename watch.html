@@ -1,0 +1,126 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet" />
+    <title>Clock</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Teko", sans-serif;
+        font-size: 32px;
+        color: white;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url("img/image2.png") center center fixed no-repeat;
+        position: relative;
+      }
+      .hr {
+        position: absolute;
+        animation: circle 43200s infinite linear;
+      }
+      .min {
+        /* background: lightpink; */
+        position: absolute;
+        animation: circle 3600s infinite linear;
+      }
+      .sec {
+        position: absolute;
+        animation: circle 60s infinite linear;
+      }
+      @keyframes circle2 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .date {
+        position: absolute;
+        width: 300px;
+        height: 25px;
+        margin-top: 9rem;
+      }
+      .today {
+        float: left;
+        margin-left: 30px;
+      }
+      .day {
+        float: right;
+        margin-right: 40px;
+      }
+      .smcircle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 20px;
+        background: rgb(52, 144, 130);
+        /* background: white; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div><img src="img/outline2.png" /></div>
+        <div class="min"><img src="img/min.png" /></div>
+        <div class="hr"><img src="img/hr.png" /></div>
+        <div class="smcircle"></div>
+        <div class="sec"><img src="img/sec.png" /></div>
+      </div>
+      <div class="date">
+        <div class="today">FRIDAY</div>
+        <div class="day"></div>
+      </div>
+    </div>
+
+    <script>
+      var time = new Date();
+      // 星期
+      var day = ["SUN", "MON", "TUE", "WED", "THR", "FRI", "SAT"];
+      var tday = time.getDay();
+      var tdate = time.getDate();
+      var sec = time.getSeconds() * 6;
+      var min = time.getMinutes() * 6 + time.getSeconds() * 0.1;
+      var hr = time.getHours() * 30 + time.getMinutes() * 0.5;
+
+      // for start run first
+      document.getElementsByClassName("min")[0].style.transform = `rotate(${min}deg)`;
+      document.getElementsByClassName("sec")[0].style.transform = `rotate(${sec}deg)`;
+      document.getElementsByClassName("hr")[0].style.transform = `rotate(${hr}deg)`;
+      document.getElementsByClassName("day")[0].textContent = `${check0(tdate)}`;
+      document.getElementsByClassName("today")[0].textContent = `${day[tday]}`;
+      runtime();
+      var loop = setInterval(runtime, 1000);
+
+      function runtime() {
+        var time = new Date();
+        var sec = time.getSeconds() * 6;
+        var min = time.getMinutes() * 6 + time.getSeconds() * 0.1;
+        var hr = time.getHours() * 30 + time.getMinutes() * 0.5;
+        document.getElementsByClassName("min")[0].style.transform = `rotate(${min}deg)`;
+        document.getElementsByClassName("sec")[0].style.transform = `rotate(${sec}deg)`;
+        document.getElementsByClassName("hr")[0].style.transform = `rotate(${hr}deg)`;
+      }
+
+      function check0(num) {
+        return num < 10 ? "0" + num : num;
+      }
+    </script>
+  </body>
+</html>
